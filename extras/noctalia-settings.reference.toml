@@ -1,0 +1,27 @@
+# ~/.local/state/noctalia/settings.toml 中与主题/壁纸有关的片段（参考用，不要直接复制）
+
+[theme]
+builtin = "Noctalia"
+community_palette = "Oxocarbon"
+custom_palette = "KoruFern"
+mode = "dark"
+shell_mode = "auto"
+source = "custom"
+wallpaper_scheme = "m3-content"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "kcolorscheme", "kitty", "niri", "qt", "starship" ]
+    community_ids = [ "opencode" ]
+
+[wallpaper]
+enabled = true
+
+    [wallpaper.default]
+    path = "/home/leesyuu/Pictures/Wallpapers/koru-logo.png"
+
+    [wallpaper.last]
+    path = "/home/leesyuu/Pictures/Wallpapers/koru-logo.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/leesyuu/Pictures/Wallpapers/koru-logo.png"
+

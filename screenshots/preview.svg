@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" font-family="FiraCode Nerd Font Mono, DejaVu Sans Mono, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16201A"/>
+      <stop offset="1" stop-color="#1F2E26"/>
+    </linearGradient>
+    <linearGradient id="win" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#243328" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#1A2620" stop-opacity="0.96"/>
+    </linearGradient>
+    <linearGradient id="accentbar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#85C57E"/>
+      <stop offset="1" stop-color="#DDE07A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#accentbar)" opacity="0.03"/>
+
+  <!-- ===== Noctalia top bar ===== -->
+  <rect x="0" y="0" width="1600" height="54" fill="#1F2E26" opacity="0.72"/>
+  <rect x="0" y="53" width="1600" height="1" fill="#3E5C46" opacity="0.7"/>
+  <g font-size="19" fill="#CFDFD0">
+    <rect x="22" y="11" width="132" height="32" rx="16" fill="#2F5138" opacity="0.9"/>
+    <circle cx="46" cy="27" r="6" fill="#85C57E"/>
+    <circle cx="76" cy="27" r="6" fill="#4E6A54"/>
+    <circle cx="106" cy="27" r="6" fill="#4E6A54"/>
+    <text x="126" y="34" fill="#85C57E">1</text>
+    <text x="180" y="34" fill="#A2B8A4">~/dotfiles &#8212; niri + noctalia</text>
+    <text x="800" y="34" text-anchor="middle" fill="#CFDFD0">17:20</text>
+    <rect x="1350" y="11" width="228" height="32" rx="16" fill="#2F5138" opacity="0.75"/>
+    <text x="1372" y="34" fill="#DDE07A">vol 42%</text>
+    <text x="1470" y="34" fill="#82BFAC">bat 88%</text>
+  </g>
+
+  <!-- ===== focused window (terminal) ===== -->
+  <rect x="70" y="104" width="856" height="536" rx="12" fill="url(#win)" stroke="#85C57E" stroke-width="3"/>
+  <g font-size="21" fill="#CFDFD0">
+    <text x="104" y="160"><tspan fill="#85C57E">&#10095;</tspan> fetch</text>
+    <g fill="#A2B8A4">
+      <text x="104" y="204">OS</text>
+      <text x="104" y="238">WM</text>
+      <text x="104" y="272">Shell</text>
+      <text x="104" y="306">Bar</text>
+      <text x="104" y="340">Theme</text>
+      <text x="104" y="374">Term</text>
+      <text x="104" y="408">CJK</text>
+    </g>
+    <text x="242" y="204">Arch Linux x86_64</text>
+    <text x="242" y="238">niri 26.04</text>
+    <text x="242" y="272">zsh &#183; oh-my-zsh &#183; p10k</text>
+    <text x="242" y="306">noctalia 5.2.1</text>
+    <text x="242" y="340"><tspan fill="#85C57E">Koru Fern</tspan> <tspan fill="#A2B8A4">(greener)</tspan></text>
+    <text x="242" y="374">kitty &#183; FiraCode Nerd Font Mono</text>
+    <text x="242" y="408">LXGW Neo Xi Hei Plus</text>
+
+    <g transform="translate(104,442)">
+      <rect width="52" height="26" rx="4" fill="#16201A" stroke="#3E5C46"/>
+      <rect x="60" width="52" height="26" rx="4" fill="#1F2E26"/>
+      <rect x="120" width="52" height="26" rx="4" fill="#85C57E"/>
+      <rect x="180" width="52" height="26" rx="4" fill="#DDE07A"/>
+      <rect x="240" width="52" height="26" rx="4" fill="#82BFAC"/>
+      <rect x="300" width="52" height="26" rx="4" fill="#8EAAB8"/>
+      <rect x="360" width="52" height="26" rx="4" fill="#CC8F88"/>
+      <rect x="420" width="52" height="26" rx="4" fill="#CFDFD0"/>
+    </g>
+
+    <text x="104" y="532"><tspan fill="#85C57E">&#10095;</tspan> niri msg action load-config-file</text>
+    <text x="104" y="566" fill="#A2B8A4">config is valid</text>
+    <text x="104" y="608"><tspan fill="#85C57E">&#10095;</tspan> <tspan fill="#CFDFD0">&#9608;</tspan></text>
+  </g>
+
+  <!-- ===== inactive window (launcher) ===== -->
+  <rect x="986" y="150" width="552" height="360" rx="12" fill="#1A2620" opacity="0.9" stroke="#1F2E26" stroke-width="3"/>
+  <g font-size="20" fill="#A2B8A4">
+    <text x="1018" y="196" fill="#CFDFD0">Applications</text>
+    <rect x="1010" y="214" width="504" height="40" rx="8" fill="#2F5138"/>
+    <text x="1032" y="241" fill="#DFEBDD">kitty</text>
+    <text x="1032" y="285">Firefox</text>
+    <text x="1032" y="325">Nautilus</text>
+    <text x="1032" y="365">LazyVim</text>
+    <text x="1032" y="405">DBX</text>
+    <text x="1032" y="460" fill="#4E6A54">type to search&#8230;</text>
+  </g>
+
+  <!-- ===== caption ===== -->
+  <text x="800" y="698" text-anchor="middle" font-size="32" fill="#CFDFD0">niri + Noctalia &#183; Koru Fern</text>
+  <text x="800" y="730" text-anchor="middle" font-size="18" fill="#A2B8A4">Arch Linux &#183; Wayland &#183; greener Koru Fern palette</text>
+
+  <!-- ===== palette legend ===== -->
+  <g font-size="16" text-anchor="middle">
+    <g transform="translate(96,756)">
+      <rect width="140" height="64" rx="10" fill="#16201A" stroke="#3E5C46"/>
+      <text x="70" y="98" fill="#A2B8A4">#16201A</text>
+      <text x="70" y="118" fill="#4E6A54">bg</text>
+    </g>
+    <g transform="translate(252,756)">
+      <rect width="140" height="64" rx="10" fill="#1F2E26" stroke="#3E5C46"/>
+      <text x="70" y="98" fill="#A2B8A4">#1F2E26</text>
+      <text x="70" y="118" fill="#4E6A54">surface</text>
+    </g>
+    <g transform="translate(408,756)">
+      <rect width="140" height="64" rx="10" fill="#3E5C46"/>
+      <text x="70" y="98" fill="#A2B8A4">#3E5C46</text>
+      <text x="70" y="118" fill="#4E6A54">border</text>
+    </g>
+    <g transform="translate(564,756)">
+      <rect width="140" height="64" rx="10" fill="#2F5138"/>
+      <text x="70" y="98" fill="#A2B8A4">#2F5138</text>
+      <text x="70" y="118" fill="#4E6A54">hover</text>
+    </g>
+    <g transform="translate(720,756)">
+      <rect width="140" height="64" rx="10" fill="#85C57E"/>
+      <text x="70" y="98" fill="#85C57E">#85C57E</text>
+      <text x="70" y="118" fill="#4E6A54">accent</text>
+    </g>
+    <g transform="translate(876,756)">
+      <rect width="140" height="64" rx="10" fill="#DDE07A"/>
+      <text x="70" y="98" fill="#DDE07A">#DDE07A</text>
+      <text x="70" y="118" fill="#4E6A54">accent 2</text>
+    </g>
+    <g transform="translate(1032,756)">
+      <rect width="140" height="64" rx="10" fill="#82BFAC"/>
+      <text x="70" y="98" fill="#82BFAC">#82BFAC</text>
+      <text x="70" y="118" fill="#4E6A54">secondary</text>
+    </g>
+    <g transform="translate(1188,756)">
+      <rect width="140" height="64" rx="10" fill="#CC8F88"/>
+      <text x="70" y="98" fill="#CC8F88">#CC8F88</text>
+      <text x="70" y="118" fill="#4E6A54">error</text>
+    </g>
+    <g transform="translate(1344,756)">
+      <rect width="140" height="64" rx="10" fill="#CFDFD0"/>
+      <text x="70" y="98" fill="#CFDFD0">#CFDFD0</text>
+      <text x="70" y="118" fill="#4E6A54">fg</text>
+    </g>
+  </g>
+</svg>

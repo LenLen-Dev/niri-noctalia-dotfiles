@@ -1,0 +1,6 @@
+[tools]
+bun = "latest"
+java = ["temurin-8", "temurin-11", "temurin-17", "temurin-21", "temurin-25"]
+maven = "latest"
+node = "24.21.0"
+zig = "latest"

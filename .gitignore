@@ -1,0 +1,17 @@
+# 系统杂物
+.DS_Store
+Thumbs.db
+
+# 备份文件
+*.bak
+*.bak-*
+*.backup-*
+
+# 字体二进制（体积大，用 fonts/install-fonts.sh 下载，不入库）
+fonts/**/*.ttf
+fonts/**/*.otf
+fonts/**/*.zip
+
+# 编辑器 / IDE
+.vscode/
+.idea/

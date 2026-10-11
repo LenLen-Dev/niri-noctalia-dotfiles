@@ -1,0 +1,29 @@
+# Koru Fern theme for Noctalia (hand-written config layer, ~/.config/noctalia/).
+# Palette roles are mapped from the Koru Fern palette in
+# ~/Downloads/koru-nixos-dotfiles/system/theme.nix and live in
+# palettes/KoruFern.json.
+[theme]
+mode = "dark"
+shell_mode = "follow"
+source = "custom"
+custom_palette = "KoruFern"
+
+# --- Frosted glass -----------------------------------------------------------
+# Dropdown panels (control center, launcher, clipboard, session, ...) get the
+# glass treatment.
+[shell.panel]
+transparency_mode = "glass"
+
+# Top bar: translucent, with compositor (niri) blur behind it. Tune the two
+# opacity values to taste (lower = more see-through).
+[bar.default]
+background_opacity = 0.55
+capsule_opacity = 0.65
+compositor_blur = true
+
+# Notification toasts and OSD pop-ups: translucent too.
+[notification]
+background_opacity = 0.7
+
+[osd]
+background_opacity = 0.7

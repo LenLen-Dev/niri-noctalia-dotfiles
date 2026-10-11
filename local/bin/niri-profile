@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+# niri-profile —— 在「niri 桌面档案」之间来回切换
+#
+#   niri-profile toggle      在 noctalia ↔ waybar 之间切换（默认）
+#   niri-profile noctalia    切到 niri + noctalia（你原来的）
+#   niri-profile waybar      切到 niri + waybar（SHORiN 那套）
+#   niri-profile status      显示当前档案
+#
+# 原理：
+#   ~/.config/niri 是指向 ~/.config/niri-profiles/<档案> 的符号链接；
+#   切换时停掉旧档案的组件 → 改符号链接 → 让 niri 重新读配置 → 启动新档案的组件
+#   （niri 的 spawn-at-startup 只在登录时执行，所以运行时切换要由本脚本起停组件）
+
+set -uo pipefail
+
+PROFILES="$HOME/.config/niri-profiles"
+LINK="$HOME/.config/niri"
+NAME="${1:-toggle}"
+
+active() { basename "$(readlink -f "$LINK")"; }
+
+have() { command -v "$1" >/dev/null 2>&1; }
+
+reload_niri() {
+    niri msg action load-config-file >/dev/null 2>&1 \
+        || niri msg action reload-config  >/dev/null 2>&1 || true
+}
+
+stop_noctalia() {
+    pkill -x noctalia 2>/dev/null || true
+}
+
+stop_waybar() {
+    pkill -x waybar         2>/dev/null || true
+    pkill -x mako           2>/dev/null || true
+    pkill -f 'wl-paste --watch cliphist' 2>/dev/null || true
+    pkill -f 'toggle-wlsunset'           2>/dev/null || true
+}
+
+start_noctalia() {
+    have noctalia && setsid -f noctalia >/dev/null 2>&1 || true
+}
+
+start_waybar() {
+    have mako && ! pgrep -x mako >/dev/null && setsid -f mako >/dev/null 2>&1
+    if have wl-paste && have cliphist && ! pgrep -f 'wl-paste --watch cliphist' >/dev/null; then
+        setsid -f sh -c 'wl-paste --watch cliphist store' >/dev/null 2>&1
+    fi
+    [ -x "$PROFILES/waybar/scripts/toggle-wlsunset" ] \
+        && ! pgrep -f 'toggle-wlsunset' >/dev/null \
+        && setsid -f "$PROFILES/waybar/scripts/toggle-wlsunset" >/dev/null 2>&1
+    [ -x "$PROFILES/waybar/scripts/screenshot-sound.sh" ] \
+        && ! pgrep -f 'screenshot-sound.sh' >/dev/null \
+        && setsid -f "$PROFILES/waybar/scripts/screenshot-sound.sh" >/dev/null 2>&1
+    # foot 服务端（waybar 那套的快捷键用 footclient，需要它常驻）
+    have foot && ! pgrep -f '^foot -s' >/dev/null && setsid -f foot -s >/dev/null 2>&1
+    # polkit 认证代理
+    [ -x /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ] \
+        && ! pgrep -f polkit-gnome-authentication-agent-1 >/dev/null \
+        && setsid -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 >/dev/null 2>&1
+    have waybar && setsid -f waybar >/dev/null 2>&1
+}
+
+switch_to() {
+    local name="$1"
+    [ -d "$PROFILES/$name" ] || { echo "未知档案: $name（可选: noctalia / waybar）" >&2; exit 1; }
+    if [ "$(active)" = "$name" ]; then
+        echo "已经是 $name 档案"
+        return 0
+    fi
+
+    case "$name" in
+        noctalia) stop_waybar   ;;
+        waybar)   stop_noctalia ;;
+    esac
+
+    ln -sfn "$PROFILES/$name" "$LINK"
+    reload_niri
+
+    case "$name" in
+        noctalia) start_noctalia ;;
+        waybar)   start_waybar   ;;
+    esac
+
+    have notify-send && notify-send "桌面档案" "已切换到 $name" 2>/dev/null || true
+    echo "已切换到 $name 档案"
+}
+
+case "$NAME" in
+    noctalia|waybar) switch_to "$NAME" ;;
+    toggle)
+        if [ "$(active)" = "waybar" ]; then switch_to noctalia; else switch_to waybar; fi
+        ;;
+    status|current) active ;;
+    *)
+        echo "用法: niri-profile [noctalia|waybar|toggle|status]" >&2
+        exit 1
+        ;;
+esac
